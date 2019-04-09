@@ -1,12 +1,32 @@
 <template>
   <div id="app">
-    <h1>Hey!</h1>
+    <div>
+      <input type="text" v-model="firstName">
+      <input type="text" v-model="lastName">
+      <input type="checkbox" v-model="includeLastName">
+    </div>
+    <p>{{ fullName }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data: () => {
+    return {
+      firstName: 'Carlos',
+      lastName: 'Fernández',
+      includeLastName: true
+    }
+  },
+  computed: {
+    fullName: function() {
+      console.log('Calculating Full Name');
+      return this.includeLastName
+        ? `${this.firstName} ${this.lastName}`
+        : this.firstName;
+    }
+  }
 }
 </script>
 
@@ -15,8 +35,10 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  
+  padding: 50px 0;
+  display: block;
+  margin: auto;
+  max-width: 800px;
 }
 </style>
